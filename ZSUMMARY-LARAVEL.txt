@@ -1,0 +1,19 @@
+routes -> web
+resources -> views
+App -> Http -> controllers
+
+href = {{ url(/) }} -----> sama kayak base url CI
+main.blade -> yield('title'), yield('container')
+section (disetiap file)
+entends(disetiap file)
+yield (hanya satu file)
+
+
+DATABASE DI FILE .ENV
+
+loop iteration -> $loop->iteration (auto increment views)
+
+=== ARTISAN ===
+
+-> php artisan make:controller (bisa)
+-> php artisna make:controller --resources (dibuatkan method default)
