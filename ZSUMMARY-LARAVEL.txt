@@ -1,3 +1,80 @@
+# MEMBUAT PROJECT LARAVEL
+	command : composer create-project --prefer-dist laravel/laravel (namaFolder)
+
+# MENJALANKAN LARAVEL
+	command : php artisan serve
+
+# VIEW 
+	- berada di folder resources -> views
+	- nama file diakhiri (.blade.php) / *templating engine
+
+	[LAYOUT]
+	- file LAYOUT / TAMPILAN YANG BISA DIPAKAI DI BANYAK FILE, SEPERTI side bar, navbar, footer, simpan di
+	 folder LAYOUT
+	- isinya ada bootstrap css, bootstrap css, title, dan div content
+	- title dan content diisi dengan @yield('name')
+	- @yield itu dinamis
+	- @yield tidak perlu titik koma
+
+	[ TEMPLATING / FILE SELAIN LAYOUT ]
+	- extends('folder/namafile.blade.php) -> memeberitahu file layout mana yang ingin diubah @yieldnya
+	- @section('name',text atau tag html) -> merubah konten @yield yang ada di file layout dengan tag html
+	- @section('name') .... @endsection -> merubah konten @yield yang ada di file layout dengan tag html
+
+	- php echo di views bisa digantikan ( {{'content'}} )
+	- {{ url('') }} itu akan mengarah ke web.php 
+		ex : <a class="nav-item nav-link" href="{{url('/about')}}">About</a> , 
+			maka url(/about) itu mengarah ke 
+			web.php pada bagian Route::get('/about', 'PagesController@about');
+
+	- GUNAKAN $loop->iteration untuk menampilakn nomor urutan secara otomatis
+	
+
+# ROUTING
+	- ada di Folder Routes -> web.php
+	- route ini berguna juga untuk penamaan url
+	- bisa meleteakan variabel ke view 
+	-> ex : Route::get(/'about', function(){
+		$nama = "Afif Raihan";
+		return view('about', ['nama'=>$nama]); //mengirim 'nama' menjadi variabel nama di views about
+	}
+	
+	- routing ini bisa dipanggil pada {{ url() }} di file views
+	- Route::get('/students', 'StudentsController@index'); -> artinya jika route /students diakses, maka akan melakukan yang dituliskan pada StudentsControlle pada function index
+
+# CONTROLLER
+	- ada di file HTTP -> controllers
+	- cara membuat controller : 
+		command : 
+			- php artisan make:controller PagesController (Huruf depan besar) atau 
+			- php artisan make:controller PagesController --resource (untuk dibuatkan method/function default yang lengkap
+	
+
+# SETUP DATABASE
+	- di file .env -> edit DB_DATABASE, DB_USERNAME(ROOT), DB_PASSWORD(KOSONG)
+
+# MIGRATION
+	- SEBELUM MEMULAI MIGRATIONS LAKUKAN : buka file AppServiceProvider.php --> tambahkan "use\Illuminate\Support\Facades\Schema;" --> ke function boot() --> isikan "Schema::defaultStringLength(255); 
+	- setelah melakukan hal diatas ketikan pada command : "php artisan migrate" -> melakukan migrate
+
+	- cara 2 : "php artisan make:migration create_namaTable_table"
+	- di dalam file create_namaTable_table buat atribut2 suatu table berdasarkan kebutuhan
+	- ketikan lagi "php artisan migrate"
+	
+	- membatalkan migration : php artisan migrate:rollback
+
+# MODEL(bentuknya jamak)
+	- ada di App (bagian luar)
+	- command = php artisan make:model namamodel (huruf besar depanya tanpa diakhiri S)
+	- memanggil Model di controller dengan cara :
+		* buat variabel baru isinya "\App\NamaModel::all();" atau
+		* ketikan "use App\NamaModel;" dibagian paling atas ->  buat variabel baru isinya "NamaModel::all();"
+
+
+
+
+
+
 routes -> web
 resources -> views
 App -> Http -> controllers

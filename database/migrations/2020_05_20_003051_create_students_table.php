@@ -14,12 +14,13 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
+            //atibut table sesuai kebutuhan
             $table->id();
             $table->string('nama');
             $table->char('nim', 10)->unique();
             $table->string('email')->unique();
             $table->string('jurusan');
-            $table->timestamps();
+            $table->timestamps(); //default laravel untuk created at dan updated at
         });
     }
 
